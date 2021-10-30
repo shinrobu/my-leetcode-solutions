@@ -1,0 +1,80 @@
+public class Solution {
+    public int RomanToInt(string s) {
+        char[] numerals = s.ToCharArray(0, s.Length);
+            int[] romanValues = new int[s.Length];
+            int translated = 0;
+            for (int i = 0; i < s.Length; i++)
+            {
+                switch (numerals[i])
+                {
+                    case 'I':
+                        romanValues[i] = 1;
+                        break;
+                    case 'V':
+                        romanValues[i] = 5;
+                        break;
+                    case 'X':
+                        romanValues[i] = 10;
+                        break;
+                    case 'L':
+                        romanValues[i] = 50;
+                        break;
+                    case 'C':
+                        romanValues[i] = 100;
+                        break;
+                    case 'D':
+                        romanValues[i] = 500;
+                        break;
+                    case 'M':
+                        romanValues[i] = 1000;
+                        break;
+                    default:
+                        romanValues[i] = 0;
+                        break;
+                }
+            }
+            translated = Calculations(romanValues, numerals);
+            return translated;
+    }
+    
+     public static int Calculations(int[] numerals, char[] romans)
+        {
+            int total = 0, temp = 0;
+            for (int i = 0; i < numerals.Length; i++)
+            {
+                if ((i + 1 < numerals.Length))
+                {
+                    if (SpecialCases(romans[i], romans[i + 1]))
+                    {
+                        temp = numerals[i + 1] - numerals[i];
+                        total += temp;
+                        if (i + 2 >= numerals.Length)
+                            break;
+                        else
+                            i = i + 1;
+                    }
+                    else
+                    {
+                        temp = 0;
+                        total += numerals[i];
+                    }
+                }
+                else 
+                    total += numerals[i];
+
+
+            }
+            return total;
+        }
+
+        public static bool SpecialCases(char roman1, char roman2)
+        {
+            if (roman1 == 'I' && (roman2 == 'V' || roman2 == 'X'))
+                return true;
+            else if (roman1 == 'X' && (roman2 == 'L' || roman2 == 'C'))
+                return true;
+            else if (roman1 == 'C' && (roman2 == 'D' || roman2 == 'M'))
+                return true;
+            return false;
+        }
+}
