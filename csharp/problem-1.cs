@@ -22,18 +22,16 @@ Output: Because nums[0] + nums[1] == 9, we return [0, 1].
 public class Solution {
     public int[] TwoSum(int[] nums, int Target)
         {
-            int tempSum = 0;
             int[] indices = new int[2];
             for (int i = 0; i < nums.Length; i++)
             {
                 for (int j = 1; j < nums.Length; j++)
                 {
-                    tempSum = nums[i] + nums[j];
-                    if (tempSum == Target && i != j)
+                    if (nums[i] + nums[j] == Target && i != j)
                     {
                         indices[0] = i;
                         indices[1] = j;
-                        break;
+                        return indices;
                     }
                 }
             }
