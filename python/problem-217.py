@@ -1,3 +1,6 @@
+#Problem prompt:
+#Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.
+
 #Second Approach
 #Runtime: 489 ms (faster than 87.98% of submissions)
 #Memory Usage: 26 MB
